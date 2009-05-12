@@ -9,10 +9,12 @@ Gem::Specification.new do |s|
   s.date = %q{2009-05-12}
   s.description = %q{Ruby helper to diff two directories}
   s.email = %q{carl@carlmercier.com}
-  s.files = ["diff_dirs.rb", "Rakefile", "test/diff_dirs_test.rb", "test/test_helper.rb", "LICENSE", "README.rdoc"]
   s.extra_rdoc_files = ["README.rdoc", "LICENSE"]
+  s.files = ["diff_dirs.rb", "Rakefile", "test/diff_dirs_test.rb", "test/test_helper.rb", "LICENSE", "README.rdoc"]
   s.has_rdoc = true
+  s.homepage = %q{http://github.com/cmer/diff_dirs}
   s.rdoc_options = ["--inline-source", "--charset=UTF-8"]
+  s.require_paths = ["./"]
   s.rubygems_version = %q{1.3.1}
-  s.summary = %q{TODO}
-end
+  s.summary = %q{Ruby helper to diff two directories}
+ end
