@@ -1,0 +1,18 @@
+= DiffDirs
+
+Helper to diff two directories
+
+= Example
+
+  diff_dirs "~/dir1", "~/dir2"
+
+== Dependencies (for tests only)
+
+  - jeremymcanally-context or shoulda
+  - giraffesoft-zebra
+  - mocha
+  - ruby-debug
+
+== COPYRIGHT
+
+Copyright (c) 2009 {Carl Mercier}[http://carlmercier.com]. See LICENSE for details.

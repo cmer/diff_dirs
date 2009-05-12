@@ -1,0 +1,6 @@
+require 'rubygems'
+require 'test/unit'
+require 'context'
+require 'zebra'
+require 'mocha'
+require 'ruby-debug'
