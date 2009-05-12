@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
      "README.rdoc",
      "Rakefile",
      "VERSION",
-     "diff_dirs.rb",
+     "lib/diff_dirs.rb",
      "test/diff_dirs_test.rb",
      "test/test_helper.rb"
   ]

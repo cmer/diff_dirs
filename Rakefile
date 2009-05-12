@@ -18,6 +18,7 @@ begin
     gemspec.homepage = "http://github.com/cmer/diff_dirs"
     gemspec.description = "Ruby helper to diff two directories"
     gemspec.authors = ["Carl Mercier"]
+    gemspec.files =  FileList["[A-Z]*", "{bin,generators,lib,test}/**/*"]
   end
 rescue LoadError
   puts "Jeweler not available. Install it with: sudo gem install technicalpickles-jeweler -s http://gems.github.com"
