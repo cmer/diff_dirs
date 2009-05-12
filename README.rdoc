@@ -3,7 +3,8 @@
 Helper to diff two directories
 
 = Example
-
+  require 'rubygems'
+  require 'diff_dirs'
   diff_dirs "~/dir1", "~/dir2"
 
 == Dependencies (for tests only)
