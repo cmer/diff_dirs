@@ -26,6 +26,7 @@ Gem::Specification.new do |s|
   s.homepage = %q{http://github.com/cmer/diff_dirs}
   s.rdoc_options = ["--charset=UTF-8"]
   s.require_paths = ["lib"]
+  s.rubyforge_project = %q{diffdirs}
   s.rubygems_version = %q{1.3.2}
   s.summary = %q{Ruby helper to diff two directories}
   s.test_files = [
