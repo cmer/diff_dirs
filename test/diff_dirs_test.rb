@@ -1,5 +1,5 @@
 require File.dirname(__FILE__) + '/test_helper'
-require File.dirname(__FILE__) + '/../diff_dirs'
+require File.dirname(__FILE__) + '/../lib/diff_dirs'
 
 class DiffDirsTest < Test::Unit::TestCase
   context "diff executable" do
@@ -66,5 +66,44 @@ class DiffDirsTest < Test::Unit::TestCase
       assert_equal "/tmp",   DiffDirs.send(:expand_path, "/tmp")
       assert_not_equal "~/", DiffDirs.send(:expand_path, "~/")
     end
+  end
+  
+  context "complex real life directory structure" do
+    setup do
+      @path = "/tmp/diff-dirs-test-#{rand(10000)}"
+      exec "mkdir -p #{@path}/1/dir1/dir2"
+      exec "touch    #{@path}/1/dir1/file1"
+      exec "touch    #{@path}/1/dir1/dir2/file2"
+      exec "mkdir -p #{@path}/1/foo/bar"
+      exec "touch    #{@path}/1/foo/file_in_foo"
+      exec "touch    #{@path}/1/file_in_root"
+      exec "touch    #{@path}/1/another_file_in_root"
+      exec "echo hello > #{@path}/1/foo/file_with_content"
+      
+      exec "mkdir -p #{@path}/2/foo/bar"
+      exec "touch    #{@path}/2/foo/file_in_foo"
+      exec "touch    #{@path}/2/foo/bar/file_in_bar"
+      exec "touch    #{@path}/2/file_in_root"
+      exec "touch    #{@path}/2/yet_another_file_in_root"
+      exec "echo world > #{@path}/2/foo/file_with_content"
+    end
+    
+    teardown do
+      `rm -fr #{@path}`
+    end
+    
+    should "run the full stack properly and return the correct diff result" do
+
+      assert_equal [[:deleted, "another_file_in_root"],
+                    [:deleted, "dir1"],
+                    [:new, "foo/bar/file_in_bar"],
+                    [:modified, "foo/file_with_content"],
+                    [:new, "yet_another_file_in_root"]], DiffDirs.diff_dirs("#{@path}/1", "#{@path}/2")
+    end
+  end
+  
+  def exec(cmd)
+    # puts cmd
+    `#{cmd}`
   end
 end

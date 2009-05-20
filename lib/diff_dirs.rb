@@ -20,10 +20,10 @@ class DiffDirs
       # New/Deleted files
       match = line.match(/^Only in ([^:]*): ([^$]*)$/)
       if match
-        if match[1] == dir1
-          return [:deleted, match[2]] # deleted from second dir
-        elsif match[1] == dir2
-          return [:new, match[2]] # new in second dir
+        if match[1].starts_with?(dir1)
+          return [:deleted, remove_dir_from_path("#{match[1]}/#{match[2]}", dir1)] # deleted from second dir
+        elsif match[1].starts_with?(dir2)
+          return [:new, remove_dir_from_path("#{match[1]}/#{match[2]}", dir2)] # new in second dir
         else
           raise "#{dir1} or #{dir2} didn't match #{match[1]}"
         end
@@ -43,7 +43,7 @@ class DiffDirs
     end
     
     def self.remove_dir_from_path(path, dir)
-      dir += "/" unless dir[-1..-1] == "/"
+      dir = add_slash(dir)
       path.sub(Regexp.new("^#{dir}"), "")
     end
     
@@ -54,6 +54,18 @@ class DiffDirs
         dir
       end
     end
+    
+    def self.add_slash(path)
+      path += "/" unless path[-1..-1] == "/"
+      path
+    end
+end
+
+class String
+  def starts_with?(prefix)
+    prefix = prefix.to_s
+    self[0, prefix.length] == prefix
+  end
 end
 
 public 
