@@ -20,6 +20,7 @@ Gem::Specification.new do |s|
      "VERSION",
      "lib/diff_dirs.rb",
      "test/diff_dirs_test.rb",
+     "test/github-test.rb",
      "test/test_helper.rb"
   ]
   s.has_rdoc = true
@@ -31,6 +32,7 @@ Gem::Specification.new do |s|
   s.summary = %q{Ruby helper to diff two directories}
   s.test_files = [
     "test/diff_dirs_test.rb",
+     "test/github-test.rb",
      "test/test_helper.rb"
   ]
 
